@@ -1,0 +1,37 @@
+# MAXIMUM ERASURE VALUE
+
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) 
+    {
+        int i = 0;
+        int end = 0;
+        int csum = 0;
+        int ans = 0;
+        HashSet<Integer> set = new HashSet<>();
+
+        for(end=0; end<nums.length; end++)
+        {
+            if(!set.contains(nums[end]))
+            {
+                set.add(nums[end]);
+                csum += nums[end];
+                ans = Math.max(csum, ans);
+            }
+
+            else{
+                while(i < end && nums[i] != nums[end]){
+                    set.remove(nums[i]);
+                    csum -= nums[i];
+                    i++;
+                }
+                set.remove(nums[i]);
+                csum -= nums[i];
+                i++;
+                end--;
+            }
+            
+        }
+        return ans;
+      
+    }
+}
