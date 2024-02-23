@@ -1,0 +1,19 @@
+class SeatManager 
+{
+    PriorityQueue<Integer> pqMin;
+
+    public SeatManager(int n) {
+        pqMin = new PriorityQueue<>();
+        for(int i=1; i<=n; i++)
+            pqMin.add(i);
+    }
+    
+    public int reserve() {
+        int res = pqMin.poll();
+        return res;
+    }
+    
+    public void unreserve(int seatNumber) {
+        pqMin.add(seatNumber);
+    }
+}
