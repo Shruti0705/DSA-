@@ -1,0 +1,37 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        if(n==1)
+        {
+            List<String> str = new ArrayList<>();
+            str.add("()");
+            return str;
+        }
+
+        else{
+            List<String> st = generateParenthesis(n-1);
+            List<String> res = new ArrayList<>();
+            for(int i=0; i<st.size(); i++)
+            {
+                String s = st.get(i);
+                String x = "()" + s;
+                res.add(x);
+                for(int j=0; j < s.length(); j++)
+                {
+                    if(s.charAt(j) == '(')
+                    {
+                        String a = s.substring(0, j+1);
+                        String b = s.substring(j+1);
+                        String c = a + "()" + b ;
+                        res.add(c);
+
+                    }
+                    else{
+                        break;
+                    }
+                }
+
+            }
+            return res;
+        }
+    }
+}
