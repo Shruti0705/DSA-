@@ -1,0 +1,18 @@
+class Solution {
+
+    public static int countPairs(LinkedList<Integer> head1, LinkedList<Integer> head2,
+                          int x) {
+        HashSet<Integer> h1 = new HashSet<>(head1);
+        ArrayList<Integer> h2 = new ArrayList<>(head2);
+        int count = 0;
+        for(int i=0; i<h2.size(); i++)
+        {
+            int sum = x-h2.get(i);
+            if(h1.contains(sum))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+}
