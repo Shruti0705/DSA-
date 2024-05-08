@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class subsets {
+
+    public static List<List<Integer>> generateSubsets(int[] nums) {
+        List<List<Integer>> subsets = new ArrayList<>();
+        backtrack(nums, 0, new ArrayList<>(), subsets);
+        return subsets;
+    }
+
+    private static void backtrack(int[] nums, int start, List<Integer> currentSubset, List<List<Integer>> subsets) {
+        subsets.add(new ArrayList<>(currentSubset));
+
+        for (int i = start; i < nums.length; i++) {
+            // Pick the element at index 'i'
+            currentSubset.add(nums[i]);
+            // Explore further with the updated subset
+            backtrack(nums, i + 1, currentSubset, subsets);
+            // Non-pick case: Backtrack to explore other possibilities
+            currentSubset.remove(currentSubset.size() - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 5};
+        List<List<Integer>> result = generateSubsets(nums);
+        System.out.println("Subsets: " + result);
+    }
+}
